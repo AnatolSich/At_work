@@ -1,55 +1,52 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  * Created by Toll on 27.10.2017.
  */
 public class BinarySearch2 {
 
-    public static void main(String[] args) {
-        int[] massiv = {0, 2, 3, 4, 5, 6, 7, 8, 9};
 
-        System.out.println(sorting(massiv,1));
+    public static void main(String[] args) {
+        int[] massiv = {0,0, 2};
+
+        System.out.println(searching(massiv, 1));
     }
 
-    private static int sorting(int[] array, int key) {
-        int[] zone = new int[2];
+    private static int searching(int[] array, int key) {
+
+        if(array.length==0||array==null) return -100;
+        if (array.length==1){
+            if (array[0]==key) return 0;
+            else return -100;
+        }
+        if(key>array[array.length-1]||key<array[0]) return -100;
+        if (key==array[array.length-1]) return array.length-1;
+        if (key==array[0]) return array[0];
+
+         int[] zone = new int[2];
+         int[] indexZone = new int[2];
         zone[0] = array[0];
         zone[1] = array[array.length - 1];
-        int[] indexZone = new int[2];
+
         indexZone[0] = 0;
         indexZone[1] = array.length - 1;
 
-        int temp = (int) Math.round((double) (indexZone[1] - indexZone[0]) / 2);
+
+        int tempIndex;
 
         while (true) {
-            if (checkIndexZone(indexZone, temp))
-            {
-                if (key == array[temp]) return temp;
-                else if (key > array[temp]) {
-                    indexZone[0] = temp;
-                    zone[0] = array[temp];
-                    temp = temp + (int) Math.round((double) (indexZone[1] - temp) / 2);
-
-                } else if (key < array[temp]) {
-                    indexZone[1] = temp;
-                    zone[1] = array[temp];
-                    temp = temp - (int) Math.round((double) (temp - indexZone[0]) / 2);
-                }
-
-
+            tempIndex = (int) Math.round((double) (indexZone[0] + indexZone[1]) / 2);
+            if (key == array[tempIndex]) return tempIndex;
+            else if (key > array[tempIndex]) {
+                indexZone[0] = tempIndex + 1;
+                zone[0] = array[tempIndex + 1];
+            } else if (key < array[tempIndex]) {
+                indexZone[1] = tempIndex - 1;
+                zone[1] = array[tempIndex - 1];
             }
-            else return -100;
+            if(indexZone[0]==indexZone[1]) return -100;
         }
-
-
-
     }
 
-    private static boolean checkIndexZone(int[] indexZone, int temp) {
-        if (temp >= indexZone[0] & temp <= indexZone[1]) return true;
-        else return false;
-    }
-
-    private static boolean checkArray(int[] array) {
-        if (array == null || array.length == 0) return false;
-        else return true;
-    }
 }
