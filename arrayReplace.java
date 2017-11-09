@@ -10,8 +10,8 @@ import java.util.List;
 public class arrayReplace {
 
     public static void main(String[] args) {
-        int[] arrayInput = new int[]{1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4};
-        int[] arrayFind = new int[]{1,2};
+        int[] arrayInput = new int[]{1, 2, 3, 4, 1, 2, 3, 1, 2, 4, 1, 2, 3, 4};
+        int[] arrayFind = new int[]{1, 2};
         int[] arrayReplace = new int[]{8, 8, 8};
         int[] arrayReplace2 =
 
