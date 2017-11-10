@@ -3,13 +3,26 @@
  */
 public class ArrayReplace3 {
     public static void main(String[] args) {
-        int[] arrayInput = new int[]{ 3, 4, 6, 1, 2, 3, 4, 5, 3, 4, 5};
-        int[] arrayFind = new int[]{3};
-        int[] arrayReplace = new int[]{7, 8, 9, 8};
+        int[] arrayInput = new int[]{3, 4, 6, 3, 4, 5, 3, 4, 5};
+        int[] arrayFind = new int[]{3, 4, 5, 7};
+        int[] arrayReplace = new int[]{7};
         int[] arrayOutt = replace(arrayInput, arrayFind, arrayReplace);
 
         for (int i = 0; i < arrayOutt.length; i++) {
-            System.out.print(arrayOutt[i] + " ");
+            System.out.printf("%3d", i);
+        }
+        System.out.println();
+        System.out.println("----------------------------------------------------");
+
+        for (int i = 0; i < arrayInput.length; i++) {
+            System.out.printf("%3d", arrayInput[i]);
+
+        }
+        System.out.println();
+
+
+        for (int i = 0; i < arrayOutt.length; i++) {
+            System.out.printf("%3d", arrayOutt[i]);
         }
     }
 
@@ -49,7 +62,9 @@ public class ArrayReplace3 {
 
         int[] arrayOut = new int[arrayInput.length + Math.abs(arrayReplace.length - arrayFind.length)];
 
-        for (int k = 0; k < arrayInput[0]; k++) {
+
+        arrayOut[0] = -1;
+        for (int k = 1; k < arrayInput[0]; k++) {
             arrayOut[k] = arrayInput[k];
         }
 
@@ -60,6 +75,7 @@ public class ArrayReplace3 {
 
         for (i = arrayInput[0], j = arrayInput[0]; i < arrayInput.length &&
                 j < arrayOut.length; ) {
+
 
             if (arrayInput[i] != arrayFind[count] && count == 0) {
                 arrayOut[j] = arrayInput[i];
@@ -80,7 +96,13 @@ public class ArrayReplace3 {
                     arrayOut[j] = arrayReplace[k];
                     j++;
                 }
-                arrayOut[0] = j;
+
+                if (j < arrayOut.length) {
+                    arrayOut[0] = j;
+                } else {
+                    arrayOut[0] = -1;
+                }
+
                 for (int k = i + 1; k < arrayInput.length; k++) {
                     arrayOut[j] = arrayInput[k];
                     j++;
@@ -92,8 +114,18 @@ public class ArrayReplace3 {
             }
 
             if (arrayInput[i] == arrayFind[count] && count != arrayFind.length) {
+
+                if (i == arrayInput.length - 1) {
+                    for (int k = i - count; k < arrayInput.length; k++) {
+                        arrayOut[j] = arrayInput[k];
+                        j++;
+                    }
+                }
+
                 count++;
                 i++;
+
+
                 continue;
             }
 
@@ -115,7 +147,7 @@ public class ArrayReplace3 {
 
         }
 
-        if (j < arrayOut.length && (j > arrayInput.length - 1) && arrayOut[j] == 0 && arrayOut[0] == -1)
+       /* if ((j > arrayInput.length - 1) && arrayOut.length > j && arrayOut[j] == 0 && arrayOut[0] == -1)
 
         {
             int arrayTemp[] = new int[j];
@@ -123,6 +155,33 @@ public class ArrayReplace3 {
                 arrayTemp[k] = arrayOut[k];
             }
             arrayOut = arrayTemp;
+        }*/
+
+        if (arrayOut[0] == -1) {
+            int arrayTemp[] = new int[arrayInput.length];
+            arrayTemp[0] = -1;
+            for (int k = 1; k < arrayInput.length; k++) {
+                arrayTemp[k] = arrayInput[k];
+            }
+            arrayOut = arrayTemp;
+
+
+        } else {
+            if (arrayReplace.length > arrayFind.length) {
+                int arrayTemp[] = new int[j];
+                for (int k = 0; k < arrayTemp.length; k++) {
+                    arrayTemp[k] = arrayOut[k];
+                }
+                arrayOut = arrayTemp;
+            } else {
+                int arrayTemp[] = new int[arrayOut.length - 2 * Math.abs(arrayReplace.length - arrayFind.length)];
+
+                for (int k = 0; k < arrayTemp.length; k++) {
+                    arrayTemp[k] = arrayOut[k];
+                }
+
+                arrayOut = arrayTemp;
+            }
         }
 
 
