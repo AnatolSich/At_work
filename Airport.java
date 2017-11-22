@@ -39,8 +39,6 @@ public class Airport {
         new PPlane("Мрия");
     }
 
-
-
     static void waiting() {
         try {
             Thread.sleep(1000);
@@ -56,7 +54,6 @@ public class Airport {
             e.printStackTrace();
         }
     }
-
 }
 
 class Run_way {
@@ -70,8 +67,6 @@ class Run_way {
     public void setPlane(Thread plane) {
         this.plane = plane;
     }
-
-
 }
 
 class PPlane extends Thread {
