@@ -6,6 +6,7 @@ import java.util.concurrent.ArrayBlockingQueue;
  */
 public class Demo {
     final public static void main(String[] args) {
+        System.out.println(1L>>2L);
         /*Car car1 = new Car("Toyota", 2000);
         Car car2 = new Car("Nissan", 1800);
         Car car3 = new Car("Audi", 3500);
