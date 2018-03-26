@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
 public class QuickSorting {
-    private static int[] input = {5, 3, 6,1, 9, -2, 0, 1};
+    private static int[] input = {5, 3, 6, 9, -2, 0, 1};
 
     public static void main(String[] args) {
         // System.out.println(minValue(0,input));
